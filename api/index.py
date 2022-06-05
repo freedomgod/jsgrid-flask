@@ -1,4 +1,4 @@
-# from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify
 # # from gevent import pywsgi
 # # from api._util import *
 # # from _util import *
@@ -262,6 +262,19 @@ def rand_pwd():
         'status': 200
     }
     return Response(json.dumps(res), content_type='application/json')
+
+def get_test(ss):
+    return jsonify({'path': ss})
+
+@app.route('/test')
+def index():
+    return get_test(basedir)
+#     return render_template('index.html')
+
+# @app.route('/test')
+# def test():
+#     return get_test(basedir)
+
 
 
 if __name__ == "__main__":
