@@ -55,4 +55,4 @@ if __name__ == "__main__":
     # app.run(debug=True)  # 本地环境下以可调试的方式直接运行
     server = pywsgi.WSGIServer(('0.0.0.0', 5000), app)
     server.serve_forever()
-    app.run()
+#     app.run()
