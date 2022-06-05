@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from gevent import pywsgi
-# from api.util import *
-from util import *
+from api._util import *
+# from _util import *
 import os
 basedir = os.path.abspath(os.path.dirname(__file__))
 
