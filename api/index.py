@@ -1,7 +1,4 @@
 from flask import Flask, render_template, request, jsonify
-from gevent import pywsgi
-# from util import *
-# from _util import *
 import os
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -79,9 +76,6 @@ def delete_bk(bk_item):
     db.session.commit()
     return jsonify(bk_item)
 
-def get_test(ss):
-    return jsonify({'path': ss})
-
 
 class BaseConfig(object):
     """配置参数"""
@@ -100,13 +94,6 @@ db.init_app(app)
 @app.route('/api')
 def index():
     return render_template('index.html')
-#     return get_test(basedir)
-#     return get_bk()
-
-
-@app.route('/api/test')
-def test():
-    return get_test(basedir)
 
 
 @app.route('/api/db', methods=['GET'])
@@ -131,8 +118,5 @@ def delete_bookmark():
 
 
 if __name__ == "__main__":
-#     app.run(debug=True)  # 本地环境下以可调试的方式直接运行
-#     server = pywsgi.WSGIServer(('0.0.0.0', 5000), app)
-#     server.serve_forever()
     app.run()
 
