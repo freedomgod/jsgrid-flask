@@ -1,10 +1,11 @@
 # 从数据库获取相关数据的接口
-from flask import jsonify
+from flask import jsonify, Blueprint, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_sqlalchemy import sqlalchemy
 
 
 db = SQLAlchemy()
+bookmark = Blueprint('bookmarks', __name__)
 
 
 class Bookmark(db.Model):
@@ -79,3 +80,24 @@ def delete_bk(bk_item):
 
 def get_test(ss):
     return jsonify({'path': ss})
+
+
+@bookmark.route('/api/db', methods=['GET'])
+def load_bookmark():
+    return get_bk()
+
+
+@bookmark.route('/api/db', methods=['PUT'])
+def update_bookmark():
+    return update_bk(request.json)
+
+
+@bookmark.route('/api/db', methods=['POST'])
+def insert_bookmark():
+    return insert_bk(request.json)
+
+
+@bookmark.route('/api/db', methods=['DELETE'])
+def delete_bookmark():
+    return delete_bk(request.form.to_dict())
+
