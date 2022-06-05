@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from gevent import pywsgi
+# from gevent import pywsgi
 # from api._util import *
 # from _util import *
 import os
@@ -129,7 +129,7 @@ def delete_bookmark():
 
 
 if __name__ == "__main__":
-    # app.run(debug=True)  # 本地环境下以可调试的方式直接运行
-    server = pywsgi.WSGIServer(('0.0.0.0', 5000), app)
-    server.serve_forever()
-#     app.run()
+#     app.run(debug=True)  # 本地环境下以可调试的方式直接运行
+#     server = pywsgi.WSGIServer(('0.0.0.0', 5000), app)
+#     server.serve_forever()
+    app.run()
