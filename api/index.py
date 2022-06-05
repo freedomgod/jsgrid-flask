@@ -83,13 +83,13 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 #     return jsonify({'path': ss})
 
 
-# class BaseConfig(object):
-#     """配置参数"""
-#     # 设置连接数据库的URL
-#     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'Bookmark.db')
-#     SQLALCHEMY_TRACK_MODIFICATIONS = False    # 设置每次请求结束后自动提交数据库中的改动
-#     SQLALCHEMY_ECHO = True  # 查询时会显示原始的SQL语句
-#     SQLALCHEMY_COMMIT_ON_TEARDOWN = False  # 禁止自动提交数据处理
+class BaseConfig(object):
+    """配置参数"""
+    # 设置连接数据库的URL
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'Bookmark.db')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False    # 设置每次请求结束后自动提交数据库中的改动
+    SQLALCHEMY_ECHO = True  # 查询时会显示原始的SQL语句
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = False  # 禁止自动提交数据处理
 
 
 app = Flask(__name__)
