@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from gevent import pywsgi
-from api.util import *
+from util import *
 # from _util import *
 import os
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
