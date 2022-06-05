@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>jsGrid - Flask</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.whfree.top/jsgrid/css/demos.css" />
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.whfree.top/jsgrid/css/jsgrid.css" />
+    <link rel="stylesheet" type="text/css" href="https://cdn.whfree.top/jsgrid/css/theme.css" />
+
+    <script src="https://cdn.whfree.top/jsgrid/js/jquery-1.8.3.js"></script>
+
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.core.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.load-indicator.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.load-strategies.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.sort-strategies.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.text.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.number.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.select.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.checkbox.js"></script>
+    <script src="https://cdn.whfree.top/jsgrid/js/jsgrid.field.control.js"></script>
+</head>
+<body>
+    <h1>书签</h1>
+    <div id="jsGrid"></div>
+
+    <script>
+        $(function() {
+
+            $("#jsGrid").jsGrid({
+                height: "70%",
+                width: "100%",
+                autoload: true,
+                filtering: true,
+                editing: true,
+                inserting: true,
+                sorting: true,
+                paging: true,
+                autoload: true,
+                pageSize: 15,
+                pageButtonCount: 5,
+                deleteConfirm: "确认删除？",
+                controller: {
+                    loadData: function() {
+                        var d = $.Deferred();
+                        $.ajax({
+                            url: "/api/db",
+                            dataType: "json",
+                            type: "GET"
+                        }).done(function(response) {
+                            d.resolve(response);
+                        });
+
+                        return d.promise();
+                    },
+                    updateItem: function(item) {
+                        var d = $.Deferred();
+                        console.log(item);
+                        $.ajax({
+                            url: "/api/db",
+                            data: JSON.stringify(item),
+                            type: "PUT",
+                            dataType: "json",
+                            contentType: "application/json",
+                        }).done(function(response) {
+                            d.resolve(response);
+                        });
+                        return d.promise();
+                    },
+                    deleteItem: function(item) {
+                        var d = $.Deferred();
+                        console.log(item);
+                        $.ajax({
+                            url: "/api/db",
+                            data: item,
+                            type: "DELETE",
+                        }).done(function(response) {
+                            d.resolve(response);
+                        });
+                        return d.promise();
+                    },
+                    insertItem: function(item) {
+                        var d = $.Deferred();
+                        $.ajax({
+                            url: "/api/db",
+                            data: JSON.stringify(item),
+                            dataType: "json",
+                            contentType: "application/json",
+                            type: "POST",
+                        }).done(function(response) {
+                            d.resolve(response);
+                        });
+                        return d.promise();
+                    },
+                },
+                fields: [
+                    { name: "bookmark_id", type: "number", width: 50, editing: false, inserting: false, sorter: function(value1, value2) {
+                        if(value1 < value2) return -1; // return negative value when first is less than second
+                        if(value1 === value2) return 0; // return zero if values are equal
+                        if(value1 > value2) return 1; // return positive value when first is greater than second
+                    } },
+                    { name: "name", type: "text", width: 150 },
+                    { name: "category", type: "text", width: 70 },
+                    { name: "tags", type: "text", width: 30 },
+                    { name: "url", type: "text", width: 150 },
+                    { name: "favicon_url", type: "text", width: 150 },
+                    { name: "description", type: "text", width: 150 },
+                    { type: "control" }
+                ]
+            });
+
+        });
+    </script>
+</body>
+</html>
