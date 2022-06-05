@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, jsonify
 from gevent import pywsgi
-from api.util import bookmark
+from api.util import *
 # from _util import *
 import os
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
 basedir = os.path.abspath(os.path.dirname(__file__))
 
-db = SQLAlchemy()
+# db = SQLAlchemy()
 
 
 # class Bookmark(db.Model):
