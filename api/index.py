@@ -97,9 +97,10 @@ app.config.from_object(BaseConfig)
 db.init_app(app)
 
 
-# @app.route('/api')
-# def index():
+@app.route('/api')
+def index():
 #     return render_template('index.html')
+    return get_bk()
 
 
 @app.route('/api/test')
