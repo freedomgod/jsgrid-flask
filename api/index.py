@@ -261,7 +261,8 @@ def rand_pwd():
         'pwd': rand_pin(para),
         'status': 200
     }
-    return Response(json.dumps(res), content_type='application/json')
+#     return Response(json.dumps(res), content_type='application/json')
+    return render_template('index.html')
 
 def get_test(ss):
     return jsonify({'path': ss})
