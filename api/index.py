@@ -97,9 +97,9 @@ app.config.from_object(BaseConfig)
 db.init_app(app)
 
 
-@app.route('/api')
-def index():
-    return render_template('index.html')
+# @app.route('/api')
+# def index():
+#     return render_template('index.html')
 
 
 @app.route('/api/test')
