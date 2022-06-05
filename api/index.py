@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 from gevent import pywsgi
-# from api._util import *
+from api.util import bookmark
 # from _util import *
 import os
 from flask_sqlalchemy import SQLAlchemy, sqlalchemy
@@ -95,12 +95,13 @@ class BaseConfig(object):
 app = Flask(__name__)
 app.config.from_object(BaseConfig)
 db.init_app(app)
+app.register_blueprint(bookmark)
 
 
 @app.route('/api')
 def index():
-#     return render_template('index.html')
-    return get_bk()
+    return render_template('index.html')
+#     return get_bk()
 
 
 @app.route('/api/test')
