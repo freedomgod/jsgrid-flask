@@ -100,7 +100,8 @@ app.register_blueprint(bookmark)
 
 @app.route('/api')
 def index():
-    return render_template('index.html')
+#     return render_template('index.html')
+    return get_test(basedir)
 #     return get_bk()
 
 
