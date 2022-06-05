@@ -266,10 +266,10 @@ def rand_pwd():
 def get_test(ss):
     return jsonify({'path': ss})
 
-@app.route('/test')
+@app.route('/api/test')
 def index():
-    return get_test(basedir)
-#     return render_template('index.html')
+#     return get_test(basedir)
+    return render_template('index.html')
 
 # @app.route('/test')
 # def test():
