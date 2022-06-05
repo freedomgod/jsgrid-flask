@@ -82,22 +82,22 @@ def get_test(ss):
     return jsonify({'path': ss})
 
 
-@bookmark.route('/api/db', methods=['GET'])
+@bookmark.route('/api/util', methods=['GET'])
 def load_bookmark():
     return get_bk()
 
 
-@bookmark.route('/api/db', methods=['PUT'])
+@bookmark.route('/api/util', methods=['PUT'])
 def update_bookmark():
     return update_bk(request.json)
 
 
-@bookmark.route('/api/db', methods=['POST'])
+@bookmark.route('/api/util', methods=['POST'])
 def insert_bookmark():
     return insert_bk(request.json)
 
 
-@bookmark.route('/api/db', methods=['DELETE'])
+@bookmark.route('/api/util', methods=['DELETE'])
 def delete_bookmark():
     return delete_bk(request.form.to_dict())
 
