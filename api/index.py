@@ -22,7 +22,8 @@ db.init_app(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return get_test(basedir)
+#     return render_template('index.html')
 
 @app.route('/test')
 def test():
